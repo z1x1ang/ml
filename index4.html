@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>坐标点展示</title>
+    <style>
+        #canvas {
+            border: 1px solid black;
+        }
+        .wrap{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">K-Means算法</h1>
+    <p>用K-means聚类算法将它们分成两类。</p>
+    <div class="wrap">
+    <table border="1" style="height: 300px;">
+        <tr>
+            <th>序号</th>
+            <th>属性1</th>
+            <th>属性2</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>4</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>5</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>4</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>5</td>
+            <td>4</td>
+        </tr>
+    </table>
+    
+    <canvas id="canvas" width="300" height="300"></canvas>
+</div>
+    <ol>
+        <li>确定聚类数量k,在本例中,我们选择k=2。随机选择两行数据如第1行(1,1)和第3行(1,2)作为初始点。</li>
+        <ol type="a">
+            <li>接下来，我们需要将全部数据分为两个簇，运用欧氏距离，让2, 4, 5, 6, 7, 8依次和1和3分别进行距离计算，离1近则和1合并，离3近则和3合并，这次迭代得到两个簇{1,2}和{3,4,5,6,7,8}</li>
+            <li>对产生的簇分别计算平均值，得到平均值点
+                对于{1,2},属性1：(1+2)/2=1.5,属性2：(1+1)/2=1,则平均值点为(1.5,1)
+                对于{3,4,5,6,7,8},属性1：(1+2+4+5+4+5)/6=3.5,属性2：(2+2+3+3+4+4)/6=3，则平均值点为(3.5,3)
+            </li>
+        </ol>
+        <li>
+            第二次迭代：再将表中全部数据按离平均值点(1.5,1)和(3.5,3)最近的原则，重新分配。得到两个新的簇：{1,2,3,4}和{5,6,7,8}；
+            再重新计算簇平均值点，得到新的平均值为(1.5,1.5)和(4.5,3.5)</li>
+        <li>第三次迭代：再将表中全部数据按离新的平均值点(1.5,1.5)和(4.5,4.5)最近的原则，重新分配。得到两个新的簇：{1,2,3,4}和{5,6,7,8}；这里发现与第二次迭代得到的两个簇相比,没有出现新的簇，则算法结束。</li>
+    </ol>
+    <b>最终的到两个簇{1,2,3,4}和{5,6,7,8}。</b>
+    <script>
+        // 定义点的数组
+        const points = [
+            { x: 1, y: 1 }, { x: 2, y: 1 }, 
+            { x: 1, y: 2 }, { x: 2, y: 2 },
+            { x: 4, y: 3 }, { x: 5, y: 3 },
+            { x: 4, y: 4 }, { x: 5, y: 4 }
+        ];
+
+        // 获取canvas元素并设置绘图上下文
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // 绘制坐标轴
+        ctx.beginPath();
+        ctx.moveTo(50*0.6, 450*0.6);
+        ctx.lineTo(450*0.6, 450*0.6);
+        ctx.moveTo(50*0.6, 450*0.6);
+        ctx.lineTo(50*0.6, 50*0.6);
+        ctx.stroke();
+
+        // 绘制坐标轴上的刻度和数字
+        for (let i = 1; i <= 10; i++) {
+            ctx.fillText(i, (40 + i * 40+5)*0.6, 465*0.6); // 横轴数字
+            ctx.fillText(i, 30*0.6, (450 - i * 40+5)*0.6); // 竖轴数字
+
+            ctx.beginPath();
+            ctx.moveTo((50 + i * 40)*0.6, 450*0.6);
+            ctx.lineTo((50 + i * 40)*0.6, 445*0.6); // 横轴刻度
+            ctx.moveTo(50*0.6, (450 - i * 40)*0.6);
+            ctx.lineTo(55*0.6, (450 - i * 40)*0.6); // 竖轴刻度
+            ctx.stroke();
+        }
+
+        // 绘制点
+        points.forEach(point => {
+            ctx.fillRect((50 + point.x * 40 - 2.5)*0.6, (450 - point.y * 40 - 2.5)*0.6, 3, 3);
+        });
+    </script>
+</body>
+</html>

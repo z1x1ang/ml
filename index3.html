@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .square-table {
+        border-collapse: collapse;
+        width: 130px;
+        height: 130px;
+        table-layout: fixed;
+    }
+        .square-table td {
+        border: 1px solid black;
+        width: 20%;
+        height: 20%;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">CNN卷积神经网络</h1>
+    <div style="display: flex; flex-wrap: wrap;gap:50px;margin-left: 50px;">
+    <div>
+    <p>输入层：</p>
+     <table id="input1" class="square-table">
+        <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>2</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>2</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <p>卷积核1:</p>
+      <table class="square-table">
+        <tr>
+          <td>-1</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <p>卷积核2:</p>
+      <table class="square-table">
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>-1</td>
+        </tr>
+        <tr>
+          <td>-1</td>
+          <td>-1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>-1</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap;gap:50px;margin-left: 50px;margin-top: 20px;">
+        <div>
+         <table class="square-table">
+            <tr>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>2</td>
+              <td>2</td>
+              <td>2</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <table class="square-table">
+            <tr>
+              <td>-1</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <table class="square-table">
+            <tr>
+              <td>1</td>
+              <td>1</td>
+              <td>-1</td>
+            </tr>
+            <tr>
+              <td>-1</td>
+              <td>-1</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>-1</td>
+              <td>1</td>
+            </tr>
+          </table>
+        </div>
+        </div>
+          <script>
+           var table=document.getElementById('input1');
+           var rows=table.getElementsByTagName('tr');
+           
+           console.log(rows[0].getElementsByTagName('td')[0].innerHTML);
+
+          </script>
+</body>
+</html>

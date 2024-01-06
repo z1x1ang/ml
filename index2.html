@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;">KNN算法</h1>
+    <h2>题目2</h2>
+    <p>给定数据集如表所示，其中X1至X7是训练集。X8是测试数据,其中Class表示样本类别。请利用kNN方法预测X8的类别，k分别取1、3、5和7，距离公式为：\(d(x,y) = \sum^{4} |x_{ai} - y_{ai}|\)</p>
+    <table border style="margin: 0 auto;">
+        <tr>
+          <th></th>
+          <th>a1</th>
+          <th>a2</th>
+          <th>a3</th>
+          <th>a4</th>
+          <th>Class</th>
+        </tr>
+        <tr>
+          <td>X1</td>
+          <td>0.15</td>
+          <td>0.22</td>
+          <td>0.20</td>
+          <td>0.13</td>
+          <td>△</td>
+        </tr>
+        <tr>
+          <td>X2</td>
+          <td>0.11</td>
+          <td>0.25</td>
+          <td>0.13</td>
+          <td>0.22</td>
+          <td>△</td>
+        </tr>
+        <tr>
+          <td>X3</td>
+          <td>0.10</td>
+          <td>0.23</td>
+          <td>0.15</td>
+          <td>0.29</td>
+          <td>△</td>
+        </tr>
+        <tr>
+          <td>X4</td>
+          <td>0.24</td>
+          <td>0.18</td>
+          <td>0.24</td>
+          <td>0.40</td>
+          <td>●</td>
+        </tr>
+        <tr>
+          <td>X5</td>
+          <td>0.15</td>
+          <td>0.30</td>
+          <td>0.22</td>
+          <td>0.50</td>
+          <td>●</td>
+        </tr>
+        <tr>
+          <td>X6</td>
+          <td>0.10</td>
+          <td>0.25</td>
+          <td>0.18</td>
+          <td>0.35</td>
+          <td>●</td>
+        </tr>
+        <tr>
+          <td>X7</td>
+          <td>0.11</td>
+          <td>0.23</td>
+          <td>0.19</td>
+          <td>0.60</td>
+          <td>●</td>
+        </tr>
+        <tr>
+          <td>X8</td>
+          <td>0.10</td>
+          <td>0.18</td>
+          <td>0.09</td>
+          <td>0.17</td>
+          <td>？</td>
+        </tr>
+      </table>
+      <div id="solution"></div>
+      <script>
+        // 假设表格有一个特定的ID或类名，这里假设它的ID是'myTable'
+var table = document.querySelector('table');
+
+// 获取表格的所有行
+var rows = table.getElementsByTagName('tr');
+
+//
+var solution=document.getElementById('solution');
+var p =document.createElement("p");
+
+console.log(rows[1].getElementsByTagName('td')[1].textContent);
+//9行,从第2行开始是具体计算的数值
+
+for (var i = 1; i < rows.length-1; i++) {
+    // 对于每一行，获取所有单元格
+    var cells = rows[i].getElementsByTagName('td');
+    for (var j = 0; j < cells.length; j++) {
+        var cellText=cells[j].innerText; 
+        if(j>=1&&j<=4) {
+          cellText=parseFloat(cellText); p.textContent=cellText;
+          p.textContent+=(rows[i].getElementsByTagName('td')[j].textContent-rows[8].getElementsByTagName('td')[j].textContent).toFixed(2)+' ';
+        }
+        p.textContent+='\n'
+        // 提取单元格的文本内容
+        console.log(cells.length);
+    }
+}
+
+
+p.textContent="解："+ p.textContent;
+solution.appendChild(p);
+</script>
+</body>
+</html>
